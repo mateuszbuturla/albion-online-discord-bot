@@ -11,7 +11,9 @@
       "language-not-exist": "Podany język nie jest wspierany",
       "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje",
       "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje",
-      "templates-list-is-empty": "Nie zdefiniowano jeszcze żadnych szablonów"
+      "templates-list-is-empty": "Nie zdefiniowano jeszcze żadnych szablonów",
+      "role-list-is-empty": "Nie zdefiniowano jeszcze żadnych ról",
+      "class-with-provided-name-is-exist": "Klasa z podaną nazwą już istnieje"
     },
     "command": {
       "help": {
@@ -50,6 +52,13 @@
       "role-list": {
         "help-description": "Zwraca listę dostępnych ról",
         "role-list": "Lista ról: (Dostępne - %{count}):"
+      },
+      "class-create": {
+        "success": "Klasa o nazwie %{name} została utworzona",
+        "help-description": "Pozwala stworzyć nową klasę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa klasy.",
+        "args": {
+          "name": "Nazwa klasy"
+        }
       }
     }
   }

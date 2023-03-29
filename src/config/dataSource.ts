@@ -3,6 +3,7 @@ import {
   ContentTemplateEntity,
   ServerConfigEntity,
   ContentRoleEntity,
+  ContentClassEntity,
 } from '../entities';
 
 export const AppDataSource = new DataSource({
@@ -13,5 +14,10 @@ export const AppDataSource = new DataSource({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   synchronize: true,
-  entities: [ServerConfigEntity, ContentTemplateEntity, ContentRoleEntity],
+  entities: [
+    ServerConfigEntity,
+    ContentTemplateEntity,
+    ContentRoleEntity,
+    ContentClassEntity,
+  ],
 });
