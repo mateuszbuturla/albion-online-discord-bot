@@ -6,9 +6,21 @@ import {
   getServerLanguage,
 } from '../../entities';
 import { ICommand, MessageType } from '../../types';
+import { Message } from 'discord.js';
 
-const getListOfRolessAsString = (roles: ContentRoleEntity[]): string => {
-  return roles.map((x) => '`' + x.name + '`').join(' | ');
+const getListOfRolessAsString = (
+  message: Message,
+  roles: ContentRoleEntity[],
+): string => {
+  return roles
+    .map((x) => {
+      const reactionEmoji = message.guild?.emojis.cache.find(
+        (emoji) => emoji.name === x.emoji,
+      );
+
+      return `${reactionEmoji} ${x.name}`;
+    })
+    .join(' | ');
 };
 
 export const command: ICommand = {
@@ -32,7 +44,7 @@ export const command: ICommand = {
         key: 'command.role-list.role-list',
         args: { count: result.length },
       },
-      value: getListOfRolessAsString(result),
+      value: getListOfRolessAsString(message, result),
     };
 
     const embed = await generateEmbed({

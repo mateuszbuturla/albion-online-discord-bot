@@ -14,4 +14,7 @@ export class ContentRoleEntity
 
   @Column({ default: '' })
   name: string;
+
+  @Column({ default: '' })
+  emoji: string;
 }

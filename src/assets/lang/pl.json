@@ -54,7 +54,8 @@
         "success": "Rola o nazwie %{name} została utworzona",
         "help-description": "Pozwala stworzyć nową rolę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa roli.",
         "args": {
-          "name": "Nazwa roli"
+          "name": "Nazwa roli",
+          "emoji": "Emoji"
         }
       },
       "role-list": {

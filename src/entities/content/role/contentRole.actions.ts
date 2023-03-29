@@ -11,10 +11,15 @@ export const getContentRoleByName = async (
   return findTemplate;
 };
 
-export const createContentRole = async (guildId: string, name: string) => {
+export const createContentRole = async (
+  guildId: string,
+  name: string,
+  emoji: string,
+) => {
   const newTemplate = new ContentRoleEntity();
   newTemplate.guildId = guildId;
   newTemplate.name = name;
+  newTemplate.emoji = emoji;
   return await newTemplate.save();
 };
 

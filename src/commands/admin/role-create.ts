@@ -12,6 +12,10 @@ const args = [
     name: 'command.role-create.args.name',
     required: true,
   },
+  {
+    name: 'command.role-create.args.emoji',
+    required: true,
+  },
 ];
 
 const checkIfRoleIsExist = async (
@@ -39,8 +43,13 @@ export const command: ICommand = {
     }
 
     const name = args[0];
+    const emoji = args[1];
 
-    const result = await createContentRole(message.guildId as string, name);
+    const result = await createContentRole(
+      message.guildId as string,
+      name,
+      emoji,
+    );
 
     if (!result) {
       return error(message, {
