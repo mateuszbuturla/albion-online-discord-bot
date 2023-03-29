@@ -1,0 +1,31 @@
+{
+  "locale": "en",
+  "langNames": "en",
+  "phrases": {
+    "error": {
+      "command-not-found": "Nieznana komenda. Wyślij `%{prefix}help` aby wyświetlić listę dostępnych komend.",
+      "command-no-description": "Komenda `%{command}` nie posiada opisu",
+      "admin-only": "Komenda dostępna tylko dla użytkowników z uprawnieniem administratora",
+      "server-error": "Wystąpił błąd serwera. Spróbuj użyć komendy %{prefix}setup, a jeżeli to nie pomoże skontaktuj się z właścicielem bota",
+      "missing-args": "Nie podano wymaganych argumentów: %{missingArgsList}",
+      "language-not-exist": "Podany język nie jest wspierany"
+    },
+    "command": {
+      "help": {
+        "help-description": "Zwraca listę wszystkich dostępnych komend",
+        "description": "    ",
+        "command-list": "Lista komend (Dostępne - %{count}):"
+      },
+      "ping": {
+        "help-description": "Zwraca wartość aktualnych opóźnień"
+      },
+      "lang": {
+        "args": {
+          "language": "język"
+        },
+        "help-description": "Pozwala zmienić język bota. Użycie %{prefix}lang język. Dostępne jezyki: %{languages}.",
+        "success": "Język został zmieniony"
+      }
+    }
+  }
+}
