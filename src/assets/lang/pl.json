@@ -46,6 +46,10 @@
         "args": {
           "name": "Nazwa roli"
         }
+      },
+      "role-list": {
+        "help-description": "Zwraca listę dostępnych ról",
+        "role-list": "Lista ról: (Dostępne - %{count}):"
       }
     }
   }

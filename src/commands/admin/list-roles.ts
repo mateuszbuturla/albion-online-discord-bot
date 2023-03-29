@@ -1,45 +1,43 @@
 import { generateEmbed } from '../../utils';
 import { error } from '../../components';
 import {
-  ContentTemplateEntity,
-  getAllTemplates,
+  ContentRoleEntity,
+  getAllRoles,
   getServerLanguage,
 } from '../../entities';
 import { ICommand, MessageType } from '../../types';
 
-const getListOfTemplatesAsString = (
-  templates: ContentTemplateEntity[],
-): string => {
-  return templates.map((x) => '`' + x.name + '`').join(' | ');
+const getListOfRolessAsString = (roles: ContentRoleEntity[]): string => {
+  return roles.map((x) => '`' + x.name + '`').join(' | ');
 };
 
 export const command: ICommand = {
-  name: 'template-list',
-  descriptionKey: 'command.template-list.help-description',
+  name: 'role-list',
+  descriptionKey: 'command.role-list.help-description',
   aliases: [],
   adminOnly: true,
   run: async (client, message, args) => {
     const lang = await getServerLanguage(message.guildId as string);
 
-    const result = await getAllTemplates(message.guildId as string);
+    const result = await getAllRoles(message.guildId as string);
 
     if (!result || result.length === 0) {
       return error(message, {
-        key: 'error.templates-list-is-empty',
+        key: 'error.role-list-is-empty',
       });
     }
 
-    const templatesListField = {
+    const rolesListField = {
       name: {
-        key: 'command.template-list.template-list',
+        key: 'command.role-list.role-list',
         args: { count: result.length },
       },
-      value: getListOfTemplatesAsString(result),
+      value: getListOfRolessAsString(result),
     };
 
     const embed = await generateEmbed({
       type: MessageType.INFORMATION,
-      fields: [templatesListField],
+      fields: [rolesListField],
       lang,
     });
 

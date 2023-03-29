@@ -17,3 +17,11 @@ export const createContentRole = async (guildId: string, name: string) => {
   newTemplate.name = name;
   return await newTemplate.save();
 };
+
+export const getAllRoles = async (
+  guildId: string,
+): Promise<ContentRoleEntity[]> => {
+  const result = await ContentRoleEntity.find({ where: { guildId } });
+
+  return result;
+};
