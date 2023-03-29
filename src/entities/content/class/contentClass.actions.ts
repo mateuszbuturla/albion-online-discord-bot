@@ -11,10 +11,15 @@ export const getContentClassByName = async (
   return findTemplate;
 };
 
-export const createContentClass = async (guildId: string, name: string) => {
+export const createContentClass = async (
+  guildId: string,
+  name: string,
+  emoji: string,
+) => {
   const newTemplate = new ContentClassEntity();
   newTemplate.guildId = guildId;
   newTemplate.name = name;
+  newTemplate.emoji = emoji;
   return await newTemplate.save();
 };
 

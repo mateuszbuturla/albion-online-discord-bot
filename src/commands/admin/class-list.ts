@@ -3,13 +3,24 @@ import { error } from '../../components';
 import {
   ContentClassEntity,
   getAllClasses,
-  getAllRoles,
   getServerLanguage,
 } from '../../entities';
 import { ICommand, MessageType } from '../../types';
+import { Message } from 'discord.js';
 
-const getListOfClassesAsString = (classes: ContentClassEntity[]): string => {
-  return classes.map((x) => '`' + x.name + '`').join(' | ');
+const getListOfClassesAsString = (
+  message: Message,
+  classes: ContentClassEntity[],
+): string => {
+  return classes
+    .map((x) => {
+      const reactionEmoji = message.guild?.emojis.cache.find(
+        (emoji) => emoji.name === x.emoji,
+      );
+
+      return `${reactionEmoji} ${x.name}`;
+    })
+    .join(' | ');
 };
 
 export const command: ICommand = {
@@ -33,7 +44,7 @@ export const command: ICommand = {
         key: 'command.class-list.class-list',
         args: { count: result.length },
       },
-      value: getListOfClassesAsString(result),
+      value: getListOfClassesAsString(message, result),
     };
 
     const embed = await generateEmbed({

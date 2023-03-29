@@ -65,7 +65,8 @@
         "success": "Klasa o nazwie %{name} została utworzona",
         "help-description": "Pozwala stworzyć nową klasę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa klasy.",
         "args": {
-          "name": "Nazwa klasy"
+          "name": "Nazwa klasy",
+          "emoji": "Emoji"
         }
       },
       "class-list": {
