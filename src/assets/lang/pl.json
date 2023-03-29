@@ -13,7 +13,8 @@
       "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje",
       "templates-list-is-empty": "Nie zdefiniowano jeszcze żadnych szablonów",
       "role-list-is-empty": "Nie zdefiniowano jeszcze żadnych ról",
-      "class-with-provided-name-is-exist": "Klasa z podaną nazwą już istnieje"
+      "class-with-provided-name-is-exist": "Klasa z podaną nazwą już istnieje",
+      "class-list-is-empty": "Nie zdefiniowano jeszcze żadnych klas"
     },
     "command": {
       "help": {
@@ -59,6 +60,10 @@
         "args": {
           "name": "Nazwa klasy"
         }
+      },
+      "class-list": {
+        "help-description": "Zwraca listę dostępnych klas",
+        "class-list": "Lista klas: (Dostępne - %{count}):"
       }
     }
   }

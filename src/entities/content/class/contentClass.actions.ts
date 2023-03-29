@@ -17,3 +17,11 @@ export const createContentClass = async (guildId: string, name: string) => {
   newTemplate.name = name;
   return await newTemplate.save();
 };
+
+export const getAllClasses = async (
+  guildId: string,
+): Promise<ContentClassEntity[]> => {
+  const result = await ContentClassEntity.find({ where: { guildId } });
+
+  return result;
+};
