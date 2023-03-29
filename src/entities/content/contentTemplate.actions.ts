@@ -77,3 +77,11 @@ export const removeClassFromTemplate = async (
 
   return template;
 };
+
+export const deleteTemplate = async (
+  template: ContentTemplateEntity,
+): Promise<ContentTemplateEntity> => {
+  await template.remove();
+
+  return template;
+};

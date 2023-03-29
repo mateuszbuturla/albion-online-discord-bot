@@ -96,6 +96,10 @@
         "remove": {
           "success": "Usunięto klasę: %{className} z szblonu: %{templateName}"
         }
+      },
+      "template-delete": {
+        "help-description": "Usuwa podany szablon (nie ma możliwość przywrócenia)",
+        "success": "Usunięto szablon: %{templateName}"
       }
     }
   }
