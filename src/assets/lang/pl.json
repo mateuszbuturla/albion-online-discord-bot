@@ -111,6 +111,13 @@
         "args": { "name": "Nazwa klasy" },
         "help-description": "Usuwa podaną klasę (nie ma możliwość przywrócenia)",
         "success": "Usunięto klasę: %{className}"
+      },
+      "template-details": {
+        "args": { "name": "Nazwa szablonu" },
+        "description": "Szczegółowe informacje o szablnie: %{name}",
+        "help-description": "Wyświetla szczegółowe informacje na temat podanego szablonu",
+        "roles-list": "Dostępne role:",
+        "classes-list": "Dostępne klasy:"
       }
     }
   }
