@@ -9,7 +9,7 @@ import { ICommand, MessageType } from '../../types';
 
 const args = [
   {
-    name: 'command.template-create.args.name',
+    name: 'command.template-delete.args.name',
     required: true,
   },
 ];
