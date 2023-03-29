@@ -24,11 +24,11 @@ export class ContentTemplateEntity
   @Column({ default: '' })
   name: string;
 
-  @ManyToMany(() => ContentRoleEntity)
+  @ManyToMany(() => ContentRoleEntity, { onDelete: 'CASCADE' })
   @JoinTable()
   roles: ContentRoleEntity[];
 
-  @ManyToMany(() => ContentClassEntity)
+  @ManyToMany(() => ContentClassEntity, { onDelete: 'CASCADE' })
   @JoinTable()
   classes: ContentClassEntity[];
 }
