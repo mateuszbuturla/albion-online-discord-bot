@@ -1,5 +1,13 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { IContentTemplateEntity } from '../../types';
+import { ContentRoleEntity } from './role';
 
 @Entity()
 export class ContentTemplateEntity
@@ -14,4 +22,8 @@ export class ContentTemplateEntity
 
   @Column({ default: '' })
   name: string;
+
+  @ManyToMany(() => ContentRoleEntity)
+  @JoinTable()
+  roles: ContentRoleEntity[];
 }
