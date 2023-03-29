@@ -9,7 +9,8 @@
       "server-error": "Wystąpił błąd serwera. Spróbuj użyć komendy %{prefix}setup, a jeżeli to nie pomoże skontaktuj się z właścicielem bota",
       "missing-args": "Nie podano wymaganych argumentów: %{missingArgsList}",
       "language-not-exist": "Podany język nie jest wspierany",
-      "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje"
+      "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje",
+      "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje"
     },
     "command": {
       "help": {
@@ -32,6 +33,13 @@
         "help-description": "Pozwala stworzyć nowy szablon wydarzenia. Użycie %{prefix}nazwa wydarzenia.",
         "args": {
           "name": "Nazwa szablonu"
+        }
+      },
+      "role-create": {
+        "success": "Rola o nazwie %{name} została utworzona",
+        "help-description": "Pozwala stworzyć nową rolę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa roli.",
+        "args": {
+          "name": "Nazwa roli"
         }
       }
     }
