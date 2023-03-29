@@ -12,6 +12,9 @@ export class ServerConfigEntity
   @Column({ default: '' })
   guildId: string;
 
-  @Column({ type: 'enum', enum: Language, default: Language.en })
+  @Column({ type: 'enum', enum: Language, default: Language.pl })
   lang: Language;
+
+  @Column({ default: null, nullable: true })
+  contentChannelId: string;
 }

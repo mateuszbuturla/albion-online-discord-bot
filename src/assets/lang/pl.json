@@ -126,6 +126,13 @@
         "help-description": "Pozwala stworzyć nowe wydarzenie",
         "description-template-select": "Wybierz szablon wydarzenia",
         "description-name-provide": "Wpisz nazwę wydarzenia"
+      },
+      "setup": {
+        "args": { "module": "Moduł (content)" },
+        "help-description": "Automatyczna konfiguracja podanego modułu bota. Użyć tylko na docelowym kanale tekstowym",
+        "content": {
+          "success": "Ustawiono ten kanał jak główny kanał modulu konten"
+        }
       }
     }
   }

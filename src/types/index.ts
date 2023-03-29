@@ -5,3 +5,4 @@ export * from './message';
 export * from './serverConfig';
 export * from './content';
 export * from './interaction';
+export * from './modules';
