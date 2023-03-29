@@ -25,3 +25,11 @@ export const getAllClasses = async (
 
   return result;
 };
+
+export const deleteClass = async (
+  contentClass: ContentClassEntity,
+): Promise<ContentClassEntity> => {
+  await contentClass.remove();
+
+  return contentClass;
+};
