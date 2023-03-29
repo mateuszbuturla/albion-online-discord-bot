@@ -8,7 +8,8 @@
       "admin-only": "Komenda dostępna tylko dla użytkowników z uprawnieniem administratora",
       "server-error": "Wystąpił błąd serwera. Spróbuj użyć komendy %{prefix}setup, a jeżeli to nie pomoże skontaktuj się z właścicielem bota",
       "missing-args": "Nie podano wymaganych argumentów: %{missingArgsList}",
-      "language-not-exist": "Podany język nie jest wspierany"
+      "language-not-exist": "Podany język nie jest wspierany",
+      "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje"
     },
     "command": {
       "help": {
@@ -25,6 +26,13 @@
         },
         "help-description": "Pozwala zmienić język bota. Użycie %{prefix}lang język. Dostępne jezyki: %{languages}.",
         "success": "Język został zmieniony"
+      },
+      "template-create": {
+        "success": "Szablon o nazwie %{name} został utworzony",
+        "help-description": "Pozwala stworzyć nowy szablon wydarzenia. Użycie %{prefix}nazwa wydarzenia.",
+        "args": {
+          "name": "Nazwa szablonu"
+        }
       }
     }
   }
