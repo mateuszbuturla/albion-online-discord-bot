@@ -5,10 +5,12 @@ import { EventEntity } from './event.entity';
 export const createEvent = async (
   guildId: string,
   authorId: string,
+  authorName: string,
 ): Promise<EventEntity> => {
   const newEvent = new EventEntity();
   newEvent.guildId = guildId;
   newEvent.authorId = authorId;
+  newEvent.author = authorName;
   newEvent.status = EventStaus.creating;
   return await newEvent.save();
 };

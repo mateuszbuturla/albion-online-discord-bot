@@ -33,4 +33,7 @@ export class EventEntity extends BaseEntity implements IEventEntity {
   @ManyToOne(() => ContentTemplateEntity)
   @JoinTable()
   template: ContentTemplateEntity;
+
+  @Column({ default: '' })
+  author: string;
 }

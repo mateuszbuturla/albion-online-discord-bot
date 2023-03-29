@@ -32,6 +32,7 @@ export const command: ICommand = {
     const result = await createEvent(
       message.guildId as string,
       message.author.id,
+      message.member?.displayName ?? message.author.username,
     );
 
     if (!result) {

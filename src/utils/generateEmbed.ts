@@ -22,6 +22,7 @@ type Options = {
   fields?: Fields;
   lang: Language;
   customTitle?: string;
+  singleRow?: any[];
 };
 
 export const generateEmbed = async ({

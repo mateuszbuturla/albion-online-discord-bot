@@ -12,4 +12,5 @@ export interface IEventEntity {
   name: string;
   description: string;
   status: EventStaus;
+  author: string;
 }
