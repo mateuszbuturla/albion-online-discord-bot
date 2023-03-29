@@ -1,5 +1,10 @@
 import { DataSource } from 'typeorm';
-import { ServerConfigEntity } from '../entities';
+import {
+  ContentTemplateEntity,
+  ServerConfigEntity,
+  ContentRoleEntity,
+  ContentClassEntity,
+} from '../entities';
 
 export const AppDataSource = new DataSource({
   type: 'mariadb',
@@ -9,5 +14,10 @@ export const AppDataSource = new DataSource({
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   synchronize: true,
-  entities: [ServerConfigEntity],
+  entities: [
+    ServerConfigEntity,
+    ContentTemplateEntity,
+    ContentRoleEntity,
+    ContentClassEntity,
+  ],
 });

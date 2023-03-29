@@ -11,10 +11,10 @@ type CustomField = {
   inline?: boolean;
 };
 
-type SingleFieldRow = CustomField[];
-type FieldRows = SingleFieldRow[];
+export type SingleFieldRow = CustomField[];
+export type FieldRows = SingleFieldRow[];
 
-type Fields = FieldRows | SingleFieldRow;
+export type Fields = FieldRows | SingleFieldRow;
 
 type Options = {
   type?: MessageType;

@@ -8,7 +8,17 @@
       "admin-only": "Komenda dostępna tylko dla użytkowników z uprawnieniem administratora",
       "server-error": "Wystąpił błąd serwera. Spróbuj użyć komendy %{prefix}setup, a jeżeli to nie pomoże skontaktuj się z właścicielem bota",
       "missing-args": "Nie podano wymaganych argumentów: %{missingArgsList}",
-      "language-not-exist": "Podany język nie jest wspierany"
+      "language-not-exist": "Podany język nie jest wspierany",
+      "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje",
+      "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje",
+      "templates-list-is-empty": "Nie zdefiniowano jeszcze żadnych szablonów",
+      "role-list-is-empty": "Nie zdefiniowano jeszcze żadnych ról",
+      "class-with-provided-name-is-exist": "Klasa z podaną nazwą już istnieje",
+      "class-list-is-empty": "Nie zdefiniowano jeszcze żadnych klas",
+      "template-is-not-exist": "Szablon nie istnieje",
+      "role-is-not-exist": "Rola nie istnieje",
+      "incorrect-action": "Nie prawidłowa akcja",
+      "class-is-not-exist": "Klasa nie istnieje"
     },
     "command": {
       "help": {
@@ -25,6 +35,89 @@
         },
         "help-description": "Pozwala zmienić język bota. Użycie %{prefix}lang język. Dostępne jezyki: %{languages}.",
         "success": "Język został zmieniony"
+      },
+      "template-create": {
+        "success": "Szablon o nazwie %{name} został utworzony",
+        "help-description": "Pozwala stworzyć nowy szablon wydarzenia. Użycie %{prefix}nazwa wydarzenia.",
+        "args": {
+          "name": "Nazwa szablonu"
+        }
+      },
+      "template-list": {
+        "help-description": "Zwraca listę dostępnych szablonów",
+        "template-list": "Lista szablonów wydarzeń: (Dostępne - %{count}):"
+      },
+      "role-create": {
+        "success": "Rola o nazwie %{name} została utworzona",
+        "help-description": "Pozwala stworzyć nową rolę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa roli.",
+        "args": {
+          "name": "Nazwa roli"
+        }
+      },
+      "role-list": {
+        "help-description": "Zwraca listę dostępnych ról",
+        "role-list": "Lista ról: (Dostępne - %{count}):"
+      },
+      "class-create": {
+        "success": "Klasa o nazwie %{name} została utworzona",
+        "help-description": "Pozwala stworzyć nową klasę aby wykorzystać potem w wydarzeniach. Użycie %{prefix}nazwa klasy.",
+        "args": {
+          "name": "Nazwa klasy"
+        }
+      },
+      "class-list": {
+        "help-description": "Zwraca listę dostępnych klas",
+        "class-list": "Lista klas: (Dostępne - %{count}):"
+      },
+      "template-role": {
+        "args": {
+          "template-name": "Nazwa szablonu",
+          "action": "Akcja (add | remove)",
+          "role-name": "Nazwa roli"
+        },
+        "help-description": "Pozwala dodać rolę do szablonu. Użycie %{prefix}(nazwa szablonu) (add | remove) (nazwa roli)",
+        "add": {
+          "success": "Dodano rolę: %{roleName} do szblonu: %{templateName}"
+        },
+        "remove": {
+          "success": "Usunięto rolę: %{roleName} z szblonu: %{templateName}"
+        }
+      },
+      "template-class": {
+        "args": {
+          "template-name": "Nazwa szablonu",
+          "action": "Akcja (add | remove)",
+          "class-name": "Nazwa klasy"
+        },
+        "help-description": "Pozwala dodać klasę do szablonu. Użycie %{prefix}(nazwa szablonu) (add | remove) (nazwa klasy)",
+        "add": {
+          "success": "Dodano klasę: %{className} do szblonu: %{templateName}"
+        },
+        "remove": {
+          "success": "Usunięto klasę: %{className} z szblonu: %{templateName}"
+        }
+      },
+      "template-delete": {
+        "args": { "name": "Nazwa szablonu" },
+        "help-description": "Usuwa podany szablon (nie ma możliwość przywrócenia)",
+        "success": "Usunięto szablon: %{templateName}"
+      },
+      "role-delete": {
+        "args": { "name": "Nazwa roli" },
+        "help-description": "Usuwa podaną rolę (nie ma możliwość przywrócenia)",
+        "success": "Usunięto rolę: %{roleName}"
+      },
+      "class-delete": {
+        "args": { "name": "Nazwa klasy" },
+        "help-description": "Usuwa podaną klasę (nie ma możliwość przywrócenia)",
+        "success": "Usunięto klasę: %{className}"
+      },
+      "template-details": {
+        "args": { "name": "Nazwa szablonu" },
+        "description": "Szczegółowe informacje o szablnie: %{name}",
+        "help-description": "Wyświetla szczegółowe informacje na temat podanego szablonu",
+        "roles-list": "Dostępne role:",
+        "classes-list": "Dostępne klasy:"
       }
     }
   }
