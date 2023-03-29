@@ -85,3 +85,15 @@ export const deleteTemplate = async (
 
   return template;
 };
+
+export const getContentTemplateById = async (
+  guildId: string,
+  id: string,
+): Promise<ContentTemplateEntity | null> => {
+  const findTemplate = await ContentTemplateEntity.findOne({
+    where: { guildId, id },
+    relations: ['roles', 'classes'],
+  });
+
+  return findTemplate;
+};

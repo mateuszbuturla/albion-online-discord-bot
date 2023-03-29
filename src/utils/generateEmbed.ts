@@ -21,6 +21,7 @@ type Options = {
   description?: string | Translate;
   fields?: Fields;
   lang: Language;
+  customTitle?: string;
 };
 
 export const generateEmbed = async ({
@@ -28,6 +29,7 @@ export const generateEmbed = async ({
   description,
   fields,
   lang,
+  customTitle,
 }: Options): Promise<EmbedBuilder> => {
   const botName = getBotName();
 
@@ -73,7 +75,7 @@ export const generateEmbed = async ({
 
   const embed = new EmbedBuilder()
     .setColor(getColorByType(type))
-    .setTitle(botName)
+    .setTitle(customTitle ? customTitle : botName)
     .setTimestamp()
     .setFooter({
       text: botName,

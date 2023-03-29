@@ -4,6 +4,7 @@ import {
   ServerConfigEntity,
   ContentRoleEntity,
   ContentClassEntity,
+  EventEntity,
 } from '../entities';
 
 export const AppDataSource = new DataSource({
@@ -19,5 +20,6 @@ export const AppDataSource = new DataSource({
     ContentTemplateEntity,
     ContentRoleEntity,
     ContentClassEntity,
+    EventEntity,
   ],
 });

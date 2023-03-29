@@ -20,6 +20,9 @@
       "incorrect-action": "Nie prawidłowa akcja",
       "class-is-not-exist": "Klasa nie istnieje"
     },
+    "content": {
+      "description": "Lider: %{nick} - ID: %{id} \n \n %{customDescription}"
+    },
     "command": {
       "help": {
         "help-description": "Zwraca listę wszystkich dostępnych komend",
@@ -118,6 +121,11 @@
         "help-description": "Wyświetla szczegółowe informacje na temat podanego szablonu",
         "roles-list": "Dostępne role:",
         "classes-list": "Dostępne klasy:"
+      },
+      "create": {
+        "help-description": "Pozwala stworzyć nowe wydarzenie",
+        "description-template-select": "Wybierz szablon wydarzenia",
+        "description-name-provide": "Wpisz nazwę wydarzenia"
       }
     }
   }

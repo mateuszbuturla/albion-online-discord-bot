@@ -1,13 +1,14 @@
-import { Client, Collection, GatewayIntentBits } from 'discord.js';
+import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
 import { join } from 'path';
 import { readdirSync } from 'fs';
 import { logger } from '../utils';
-import { ICommand, IEventClient } from '../types';
+import { ICommand, IEventClient, IEventInteraction } from '../types';
 
 class ExtendedClient extends Client {
   public commands: Collection<string, ICommand> = new Collection();
   public aliases: Collection<string, ICommand> = new Collection();
   public events: Collection<string, IEventClient> = new Collection();
+  public interactions: Collection<string, IEventInteraction> = new Collection();
 
   constructor() {
     super({
@@ -15,6 +16,10 @@ class ExtendedClient extends Client {
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.DirectMessageReactions,
       ],
     });
   }
@@ -49,11 +54,27 @@ class ExtendedClient extends Client {
     });
   }
 
+  private loadInteractions() {
+    const interactionPath = join(__dirname, '..', 'interactions');
+    readdirSync(interactionPath).forEach((dir) => {
+      const interactions = readdirSync(`${interactionPath}/${dir}`).filter(
+        (file) => file.endsWith('.ts'),
+      );
+
+      for (const file of interactions) {
+        const { interaction } = require(`${interactionPath}/${dir}/${file}`);
+        this.interactions.set(interaction.name, interaction);
+        logger(`Interaction ${interaction.name} has been loaded`);
+      }
+    });
+  }
+
   public async init() {
     this.login(process.env.TOKEN);
 
     this.loadCommands();
     this.loadEvents();
+    this.loadInteractions();
   }
 }
 
