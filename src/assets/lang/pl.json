@@ -10,7 +10,8 @@
       "missing-args": "Nie podano wymaganych argumentów: %{missingArgsList}",
       "language-not-exist": "Podany język nie jest wspierany",
       "template-with-provided-name-is-exist": "Szablon z podaną nazwą już istnieje",
-      "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje"
+      "role-with-provided-name-is-exist": "Rola z podaną nazwą już istnieje",
+      "templates-list-is-empty": "Nie zdefiniowano jeszcze żadnych szablonów"
     },
     "command": {
       "help": {
@@ -34,6 +35,10 @@
         "args": {
           "name": "Nazwa szablonu"
         }
+      },
+      "template-list": {
+        "help-description": "Zwraca listę dostępnych szablonów",
+        "template-list": "Lista szablonów wydarzeń: (Dostępne - %{count}):"
       },
       "role-create": {
         "success": "Rola o nazwie %{name} została utworzona",
