@@ -101,6 +101,11 @@
         "args": { "name": "Nazwa szablonu" },
         "help-description": "Usuwa podany szablon (nie ma możliwość przywrócenia)",
         "success": "Usunięto szablon: %{templateName}"
+      },
+      "role-delete": {
+        "args": { "name": "Nazwa roli" },
+        "help-description": "Usuwa podaną rolę (nie ma możliwość przywrócenia)",
+        "success": "Usunięto rolę: %{roleName}"
       }
     }
   }

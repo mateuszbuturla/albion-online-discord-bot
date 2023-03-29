@@ -25,3 +25,11 @@ export const getAllRoles = async (
 
   return result;
 };
+
+export const deleteRole = async (
+  role: ContentRoleEntity,
+): Promise<ContentRoleEntity> => {
+  await role.remove();
+
+  return role;
+};
