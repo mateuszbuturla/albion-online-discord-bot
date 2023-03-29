@@ -1,3 +1,4 @@
+import { ContentClassEntity } from './class';
 import { ContentTemplateEntity } from './contentTemplate.entity';
 import { ContentRoleEntity } from './role';
 
@@ -7,7 +8,7 @@ export const getContentTemplateByName = async (
 ): Promise<ContentTemplateEntity | null> => {
   const findTemplate = await ContentTemplateEntity.findOne({
     where: { guildId, name },
-    relations: ['roles'],
+    relations: ['roles', 'classes'],
   });
 
   return findTemplate;
@@ -48,6 +49,30 @@ export const removeRoleFromTemplate = async (
   role: ContentRoleEntity,
 ): Promise<ContentTemplateEntity> => {
   template.roles = template.roles.filter((item) => item.id !== role.id);
+  await template.save();
+
+  return template;
+};
+
+export const addClassToTemplate = async (
+  template: ContentTemplateEntity,
+  contentClass: ContentClassEntity,
+): Promise<ContentTemplateEntity> => {
+  if (!template.classes.find((item) => item.id === contentClass.id)) {
+    template.classes = [...template.classes, contentClass];
+    await template.save();
+  }
+
+  return template;
+};
+
+export const removeClassFromTemplate = async (
+  template: ContentTemplateEntity,
+  contentClass: ContentClassEntity,
+): Promise<ContentTemplateEntity> => {
+  template.classes = template.classes.filter(
+    (item) => item.id !== contentClass.id,
+  );
   await template.save();
 
   return template;

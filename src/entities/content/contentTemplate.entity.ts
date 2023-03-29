@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { IContentTemplateEntity } from '../../types';
+import { ContentClassEntity } from './class';
 import { ContentRoleEntity } from './role';
 
 @Entity()
@@ -26,4 +27,8 @@ export class ContentTemplateEntity
   @ManyToMany(() => ContentRoleEntity)
   @JoinTable()
   roles: ContentRoleEntity[];
+
+  @ManyToMany(() => ContentClassEntity)
+  @JoinTable()
+  classes: ContentClassEntity[];
 }

@@ -17,7 +17,8 @@
       "class-list-is-empty": "Nie zdefiniowano jeszcze żadnych klas",
       "template-is-not-exist": "Szablon nie istnieje",
       "role-is-not-exist": "Rola nie istnieje",
-      "incorrect-action": "Nie prawidłowa akcja"
+      "incorrect-action": "Nie prawidłowa akcja",
+      "class-is-not-exist": "Klasa nie istnieje"
     },
     "command": {
       "help": {
@@ -80,6 +81,20 @@
         },
         "remove": {
           "success": "Usunięto rolę: %{roleName} z szblonu: %{templateName}"
+        }
+      },
+      "template-class": {
+        "args": {
+          "template-name": "Nazwa szablonu",
+          "action": "Akcja (add | remove)",
+          "class-name": "Nazwa klasy"
+        },
+        "help-description": "Pozwala dodać klasę do szablonu. Użycie %{prefix}(nazwa szablonu) (add | remove) (nazwa klasy)",
+        "add": {
+          "success": "Dodano klasę: %{className} do szblonu: %{templateName}"
+        },
+        "remove": {
+          "success": "Usunięto klasę: %{className} z szblonu: %{templateName}"
         }
       }
     }
