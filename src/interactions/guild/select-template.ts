@@ -45,22 +45,28 @@ export const interaction: IInteraction = {
     const eventName = new TextInputBuilder()
       .setCustomId('eventName')
       .setLabel('Nazwa wydarzenia')
-      .setStyle(TextInputStyle.Short);
+      .setStyle(TextInputStyle.Short)
+      .setMaxLength(20);
 
     const eventDescription = new TextInputBuilder()
       .setCustomId('eventDescription')
       .setLabel('Opis wydarzenia')
-      .setStyle(TextInputStyle.Paragraph);
+      .setStyle(TextInputStyle.Paragraph)
+      .setMaxLength(200);
 
     const eventDate = new TextInputBuilder()
       .setCustomId('eventDate')
       .setLabel('Data wydarzenia (dd-mm-rrrr)')
-      .setStyle(TextInputStyle.Short);
+      .setStyle(TextInputStyle.Short)
+      .setMinLength(10)
+      .setMaxLength(10);
 
     const eventTime = new TextInputBuilder()
       .setCustomId('eventTime')
       .setLabel('Godzina rozpoczęcia (hh:mm)')
-      .setStyle(TextInputStyle.Short);
+      .setStyle(TextInputStyle.Short)
+      .setMinLength(5)
+      .setMaxLength(5);
 
     const firstActionRow: any = new ActionRowBuilder().addComponents(eventName);
     const secondActionRow: any = new ActionRowBuilder().addComponents(
