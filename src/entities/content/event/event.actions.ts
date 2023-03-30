@@ -41,10 +41,14 @@ export const finishEventCreation = async (
   event: EventEntity,
   name: string,
   description: string,
+  date: string,
+  time: string,
 ): Promise<EventEntity> => {
   event.name = name;
   event.description = description;
   event.status = EventStaus.pending;
+  event.date = date;
+  event.time = time;
   event.participants = [];
   await event.save();
 
@@ -74,4 +78,33 @@ export const getEventById = async (id: string): Promise<EventEntity | null> => {
   });
 
   return result;
+};
+
+export const getAllPendingContents = async (): Promise<EventEntity[]> => {
+  const result = await EventEntity.find({
+    where: { status: EventStaus.pending },
+    relations: ['participants'],
+  });
+
+  return result;
+};
+
+export const getAllInProgressContents = async (): Promise<EventEntity[]> => {
+  const result = await EventEntity.find({
+    where: { status: EventStaus.inProgrss },
+    relations: ['participants'],
+  });
+
+  return result;
+};
+
+export const setContentChannelAndMessageId = async (
+  event: EventEntity,
+  channelId: string,
+  messageId: string,
+) => {
+  event.messageId = messageId;
+  event.channelId = channelId;
+
+  return await event.save();
 };

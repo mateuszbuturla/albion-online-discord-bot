@@ -29,11 +29,23 @@ export class EventEntity extends BaseEntity implements IEventEntity {
   @Column({ default: '' })
   description: string;
 
+  @Column({ default: '' })
+  date: string;
+
+  @Column({ default: '' })
+  time: string;
+
   @Column({ type: 'enum', enum: EventStaus, default: EventStaus.creating })
   status: EventStaus;
 
   @Column({ default: '' })
   author: string;
+
+  @Column({ default: '' })
+  channelId: string;
+
+  @Column({ default: '' })
+  messageId: string;
 
   @ManyToOne(() => ContentTemplateEntity)
   @JoinTable()

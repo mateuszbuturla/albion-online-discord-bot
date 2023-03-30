@@ -3,12 +3,14 @@ import { join } from 'path';
 import { readdirSync } from 'fs';
 import { logger } from '../utils';
 import { ICommand, IEventClient, IEventInteraction } from '../types';
+import { Cron } from '../cron';
 
 class ExtendedClient extends Client {
   public commands: Collection<string, ICommand> = new Collection();
   public aliases: Collection<string, ICommand> = new Collection();
   public events: Collection<string, IEventClient> = new Collection();
   public interactions: Collection<string, IEventInteraction> = new Collection();
+  public cron = new Cron();
 
   constructor() {
     super({
@@ -77,6 +79,8 @@ class ExtendedClient extends Client {
     this.loadCommands();
     this.loadEvents();
     this.loadInteractions();
+
+    globalThis.client = this;
   }
 }
 

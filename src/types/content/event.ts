@@ -13,4 +13,8 @@ export interface IEventEntity {
   description: string;
   status: EventStaus;
   author: string;
+  date: string;
+  time: string;
+  channelId: string;
+  messageId: string;
 }

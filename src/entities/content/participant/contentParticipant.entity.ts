@@ -27,6 +27,9 @@ export class ContentParticipantEntity
   @Column({ default: '' })
   userName: string;
 
+  @Column({ default: false })
+  reminderSent: boolean;
+
   @ManyToOne(() => ContentClassEntity, { onDelete: 'CASCADE' })
   @JoinColumn()
   selectedClass: ContentClassEntity;
