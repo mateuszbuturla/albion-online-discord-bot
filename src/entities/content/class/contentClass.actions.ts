@@ -4,11 +4,22 @@ export const getContentClassByName = async (
   guildId: string,
   name: string,
 ): Promise<ContentClassEntity | null> => {
-  const findTemplate = await ContentClassEntity.findOne({
+  const findClass = await ContentClassEntity.findOne({
     where: { guildId, name },
   });
 
-  return findTemplate;
+  return findClass;
+};
+
+export const getContentClassByEmoji = async (
+  guildId: string,
+  emoji: string,
+): Promise<ContentClassEntity | null> => {
+  const findClass = await ContentClassEntity.findOne({
+    where: { guildId, emoji },
+  });
+
+  return findClass;
 };
 
 export const createContentClass = async (

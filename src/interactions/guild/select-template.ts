@@ -4,19 +4,16 @@ import {
   TextInputBuilder,
   TextInputStyle,
 } from 'discord.js';
-import { generateEmbed } from '../../utils';
 import {
   getContentTemplateById,
   getEventByUserIdWithStatusCreating,
   saveTemplateToEvent,
 } from '../../entities';
-import { IInteraction, Language, MessageType } from '../../types';
+import { IInteraction } from '../../types';
 
 export const interaction: IInteraction = {
   name: 'template',
   run: async (client, interaction) => {
-    console.log(interaction);
-
     const userId: string = interaction.user.id;
     const templateId: string = interaction.values[0];
 

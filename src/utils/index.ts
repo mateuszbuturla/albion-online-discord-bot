@@ -4,3 +4,4 @@ export * from './translate';
 export * from './assetsDir';
 export * from './generateEmbed';
 export * from './getColorByType';
+export * from './getEmoji';

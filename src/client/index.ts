@@ -20,6 +20,8 @@ class ExtendedClient extends Client {
         GatewayIntentBits.DirectMessages,
         GatewayIntentBits.DirectMessageTyping,
         GatewayIntentBits.DirectMessageReactions,
+        GatewayIntentBits.GuildEmojisAndStickers,
+        GatewayIntentBits.GuildMessageReactions,
       ],
     });
   }

@@ -25,6 +25,18 @@ export const getServerLanguage = async (guildId: string): Promise<Language> => {
   return findServer.lang;
 };
 
+export const getServerContentChannel = async (
+  guildId: string,
+): Promise<string | null> => {
+  const findServer = await ServerConfigEntity.findOne({ where: { guildId } });
+
+  if (!findServer || !findServer.contentChannelId) {
+    return null;
+  }
+
+  return findServer.contentChannelId;
+};
+
 export const changeServerLanguage = async (
   guildId: string,
   lang: Language,

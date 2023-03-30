@@ -4,7 +4,6 @@ import { IEventInteraction, IInteraction } from '../types';
 export const event: IEventInteraction = {
   name: Events.InteractionCreate,
   run: (client, interaction) => {
-    console.log(interaction);
     try {
       const findInteraction = client.interactions.get(interaction.customId);
 

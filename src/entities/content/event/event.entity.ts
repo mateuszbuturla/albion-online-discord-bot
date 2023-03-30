@@ -5,10 +5,12 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { EventStaus, IEventEntity } from '../../../types';
 import { ContentTemplateEntity } from '../contentTemplate.entity';
+import { ContentParticipantEntity } from '../participant';
 
 @Entity()
 export class EventEntity extends BaseEntity implements IEventEntity {
@@ -30,10 +32,14 @@ export class EventEntity extends BaseEntity implements IEventEntity {
   @Column({ type: 'enum', enum: EventStaus, default: EventStaus.creating })
   status: EventStaus;
 
+  @Column({ default: '' })
+  author: string;
+
   @ManyToOne(() => ContentTemplateEntity)
   @JoinTable()
   template: ContentTemplateEntity;
 
-  @Column({ default: '' })
-  author: string;
+  @OneToMany(() => ContentParticipantEntity, (participant) => participant.event)
+  @JoinTable()
+  participants: ContentParticipantEntity[];
 }

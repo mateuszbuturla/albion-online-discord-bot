@@ -1,12 +1,45 @@
-import { generateEmbed } from '../../utils';
 import {
+  EventEntity,
   finishEventCreation,
   getEventByUserIdWithStatusCreating,
+  getServerContentChannel,
   getServerLanguage,
-  ServerConfigEntity,
 } from '../../entities';
-import { IInteraction, MessageType } from '../../types';
-import { TextChannel } from 'discord.js';
+import { IInteraction } from '../../types';
+import { Message, TextChannel } from 'discord.js';
+import { contentEmbed } from '../../components';
+import { contentReactionHandler } from '../../handlers';
+import { getEmoji } from '../../utils';
+
+const finishEventSetup = async (
+  userId: string,
+  eventName: string,
+  eventDescription: string,
+) => {
+  const event = await getEventByUserIdWithStatusCreating(userId);
+
+  if (!event) {
+    console.log('missing event');
+    return;
+  }
+
+  const result = await finishEventCreation(event, eventName, eventDescription);
+
+  return result;
+};
+
+const generateReactions = (message: Message, event: EventEntity): void => {
+  [...event.template.roles, ...event.template.classes].forEach(async (item) => {
+    const reactionEmoji = getEmoji(message, item.emoji);
+    message.react(`${reactionEmoji}`);
+  });
+};
+
+const sendDMMessage = async (interaction: any): Promise<void> => {
+  await interaction.reply({
+    content: 'Wydarzenie zostało utworzone',
+  });
+};
 
 export const interaction: IInteraction = {
   name: 'submit-event',
@@ -18,67 +51,31 @@ export const interaction: IInteraction = {
     const eventDate = interaction.fields.getTextInputValue('eventDate');
     const eventTime = interaction.fields.getTextInputValue('eventTime');
 
-    const event = await getEventByUserIdWithStatusCreating(userId);
-
+    const event = await finishEventSetup(userId, eventName, eventDescription);
     if (!event) {
-      console.log('missing event');
-      return;
-    }
-
-    const result = await finishEventCreation(
-      event,
-      eventName,
-      eventDescription,
-    );
-
-    if (!result) {
       return;
     }
 
     const lang = await getServerLanguage(event.guildId);
+    const contentChannelId = await getServerContentChannel(event.guildId);
 
-    const serverConfig = await ServerConfigEntity.findOne({
-      where: { guildId: event.guildId },
-    });
-
-    if (!serverConfig || !serverConfig.contentChannelId) {
+    if (!contentChannelId) {
       return;
     }
 
-    await interaction.reply({
-      content: 'Wydarzenie zostało utworzone',
-    });
-
     const guild = await client.guilds.fetch(event.guildId);
-
     const channel = (await guild.channels.fetch(
-      serverConfig.contentChannelId,
+      contentChannelId,
     )) as TextChannel;
-
-    const embed = await generateEmbed({
-      type: MessageType.INFORMATION,
-      customTitle: result.name,
-      description: {
-        key: 'content.description',
-        args: {
-          customDescription: result.description,
-          id: result.id,
-          nick: result.author,
-        },
-      },
-      lang,
-    });
-
-    embed.addFields(
-      { name: '📅 Data', value: eventDate, inline: true },
-      { name: '🕑 Godzina', value: eventTime, inline: true },
-      { name: '👥 Grupa', value: eventTime, inline: true },
-    );
-
     if (!channel) {
       return;
     }
 
-    channel.send({ embeds: [embed] });
+    const embed = await contentEmbed(event, lang);
+    const messageResult = await channel.send({ embeds: [embed] });
+
+    await sendDMMessage(interaction);
+    await generateReactions(messageResult, event);
+    await contentReactionHandler(messageResult, event, lang);
   },
 };
