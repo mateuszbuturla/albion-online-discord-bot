@@ -13,7 +13,7 @@
   "author": "Mateusz Buturla",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.6.0",
+    "discord.js": "^14.8.0",
     "mysql": "^2.18.1",
     "node-polyglot": "^2.4.2",
     "reflect-metadata": "^0.1.13",
