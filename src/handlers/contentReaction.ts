@@ -38,7 +38,7 @@ const getEventAndUpdateEmbed = async (
 
 export const contentReactionHandler = async (
   message: Message,
-  event: EventEntity,
+  eventId: string,
   lang: Language,
 ) => {
   const filter = () => true;
@@ -49,6 +49,12 @@ export const contentReactionHandler = async (
 
   collector.on('collect', async (reaction, user) => {
     if (user.bot) {
+      return;
+    }
+
+    const event = await getEventById(eventId);
+
+    if (!event) {
       return;
     }
 

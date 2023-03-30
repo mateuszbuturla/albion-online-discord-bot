@@ -76,6 +76,6 @@ export const interaction: IInteraction = {
 
     await sendDMMessage(interaction);
     await generateReactions(messageResult, event);
-    await contentReactionHandler(messageResult, event, lang);
+    await contentReactionHandler(messageResult, event.id, lang);
   },
 };
