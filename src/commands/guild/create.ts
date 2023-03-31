@@ -24,7 +24,7 @@ export const command: ICommand = {
 
     if (templates.length === 0) {
       return error(message, {
-        key: 'error.server-error',
+        key: 'error.no-templates-defined',
       });
     }
 
