@@ -31,8 +31,8 @@ class ExtendedClient extends Client {
   private loadCommands() {
     const commandPath = join(__dirname, '..', 'commands');
     readdirSync(commandPath).forEach((dir) => {
-      const commands = readdirSync(`${commandPath}/${dir}`).filter((file) =>
-        file.endsWith('.ts'),
+      const commands = readdirSync(`${commandPath}/${dir}`).filter(
+        (file) => file.endsWith('.ts') || file.endsWith('.js'),
       );
 
       for (const file of commands) {
@@ -62,7 +62,7 @@ class ExtendedClient extends Client {
     const interactionPath = join(__dirname, '..', 'interactions');
     readdirSync(interactionPath).forEach((dir) => {
       const interactions = readdirSync(`${interactionPath}/${dir}`).filter(
-        (file) => file.endsWith('.ts'),
+        (file) => file.endsWith('.ts') || file.endsWith('.js'),
       );
 
       for (const file of interactions) {
