@@ -22,6 +22,12 @@ export const command: ICommand = {
 
     const templates = await getAllTemplates(message.guildId as string);
 
+    if (templates.length === 0) {
+      return error(message, {
+        key: 'error.server-error',
+      });
+    }
+
     const row = new ActionRowBuilder<SelectMenuBuilder>().addComponents(
       new SelectMenuBuilder()
         .setCustomId('template')

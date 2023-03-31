@@ -1,4 +1,4 @@
-import { createContentModal } from '../../components';
+import { createContentModal, error } from '../../components';
 import {
   getContentTemplateById,
   getEventByUserIdWithStatusCreating,
@@ -15,21 +15,21 @@ export const interaction: IInteraction = {
     const event = await getEventByUserIdWithStatusCreating(userId);
 
     if (!event) {
-      console.log('missing event');
+      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
       return;
     }
 
     const template = await getContentTemplateById(event.guildId, templateId);
 
     if (!template) {
-      console.log('missing template');
+      interaction.reply({ content: 'Szablon nie istnieje' });
       return;
     }
 
     const result = await saveTemplateToEvent(event, template);
 
     if (!result) {
-      console.log('error');
+      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
       return;
     }
 

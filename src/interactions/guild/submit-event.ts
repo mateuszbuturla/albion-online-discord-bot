@@ -93,6 +93,7 @@ export const interaction: IInteraction = {
       eventTime,
     );
     if (!event) {
+      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
       return;
     }
 
@@ -100,6 +101,10 @@ export const interaction: IInteraction = {
     const contentChannelId = await getServerContentChannel(event.guildId);
 
     if (!contentChannelId) {
+      interaction.reply({
+        content:
+          'Serwer nie posiada zdefiniowanego kanału dla wydarzeń. Skontaktuj się z administracją serwera',
+      });
       return;
     }
 
@@ -108,6 +113,7 @@ export const interaction: IInteraction = {
       contentChannelId,
     )) as TextChannel;
     if (!channel) {
+      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
       return;
     }
 

@@ -18,7 +18,8 @@
       "template-is-not-exist": "Szablon nie istnieje",
       "role-is-not-exist": "Rola nie istnieje",
       "incorrect-action": "Nie prawidłowa akcja",
-      "class-is-not-exist": "Klasa nie istnieje"
+      "class-is-not-exist": "Klasa nie istnieje",
+      "no-templates-defined": "Nie istnieją żadne szablony kontentu"
     },
     "content": {
       "description": "Lider: %{nick} - ID: %{id} \n \n %{customDescription}"
