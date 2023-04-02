@@ -97,7 +97,7 @@ class ExtendedClient extends discord_js_1.Client {
     }
     init() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.login(process.env.TOKEN);
+            this.login('MTA5MDU3ODg0MzA1MzU5MjU3Ng.GD0u6l.yzMozfM2UiPnbZEI6C3NEJkGC9bjdIe1hvar_4');
             this.loadCommands();
             this.loadEvents();
             this.loadInteractions();

@@ -5,11 +5,11 @@ const typeorm_1 = require("typeorm");
 const entities_1 = require("../entities");
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'mariadb',
-    host: process.env.MYSQL_HOST,
+    host: 'localhost',
     port: 3306,
-    username: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
+    username: 'admin',
+    password: 'password',
+    database: 'albion_bot',
     synchronize: true,
     entities: [
         entities_1.ServerConfigEntity,

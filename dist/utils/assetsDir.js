@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.assetsDir = void 0;
 function assetsDir() {
-    const dir = process.env.ASSETS_DIR;
+    const dir = '__dirname/../assets/';
     if (!dir) {
         throw new Error('ASSETS_DIR is not defined');
     }
