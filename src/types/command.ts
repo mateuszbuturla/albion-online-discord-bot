@@ -16,5 +16,6 @@ export interface ICommand {
   aliases?: string[];
   adminOnly?: boolean;
   args?: Arg[];
+  disabled?: boolean;
   run: Run;
 }

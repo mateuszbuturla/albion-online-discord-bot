@@ -122,6 +122,7 @@ export const command: ICommand = {
   aliases: [],
   args,
   adminOnly: true,
+  disabled: true,
   run: async (client, message, args) => {
     const templateName = args[0];
     const action = args[1];

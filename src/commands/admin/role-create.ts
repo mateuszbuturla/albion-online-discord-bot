@@ -33,6 +33,7 @@ export const command: ICommand = {
   aliases: [],
   args,
   adminOnly: true,
+  disabled: true,
   run: async (client, message, args) => {
     const lang = await getServerLanguage(message.guildId as string);
 

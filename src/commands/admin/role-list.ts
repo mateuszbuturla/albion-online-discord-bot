@@ -28,6 +28,7 @@ export const command: ICommand = {
   descriptionKey: 'command.role-list.help-description',
   aliases: [],
   adminOnly: true,
+  disabled: true,
   run: async (client, message, args) => {
     const lang = await getServerLanguage(message.guildId as string);
 

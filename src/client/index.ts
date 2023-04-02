@@ -37,12 +37,14 @@ class ExtendedClient extends Client {
 
       for (const file of commands) {
         const { command } = require(`${commandPath}/${dir}/${file}`);
-        this.commands.set(command.name, command);
-        logger(`Command ${command.name} has been loaded`);
-        if (command?.aliases.length !== 0) {
-          command?.aliases.forEach((alias: string) => {
-            this.aliases.set(alias, command);
-          });
+        if (!command.disabled) {
+          this.commands.set(command.name, command);
+          logger(`Command ${command.name} has been loaded`);
+          if (command?.aliases.length !== 0) {
+            command?.aliases.forEach((alias: string) => {
+              this.aliases.set(alias, command);
+            });
+          }
         }
       }
     });
