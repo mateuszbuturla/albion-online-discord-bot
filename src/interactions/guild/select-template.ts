@@ -19,7 +19,12 @@ export const interaction: IInteraction = {
       return;
     }
 
+    console.log('GUILD ID:', event.guildId);
+    console.log('TEMPLATE ID:', templateId);
+
     const template = await getContentTemplateById(event.guildId, templateId);
+
+    console.log(template);
 
     if (!template) {
       interaction.reply({ content: 'Szablon nie istnieje' });
