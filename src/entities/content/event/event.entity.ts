@@ -47,6 +47,9 @@ export class EventEntity extends BaseEntity implements IEventEntity {
   @Column({ default: '' })
   messageId: string;
 
+  @Column({ default: '' })
+  textChannelId: string;
+
   @ManyToOne(() => ContentTemplateEntity, { onDelete: 'CASCADE' })
   @JoinTable()
   template: ContentTemplateEntity;

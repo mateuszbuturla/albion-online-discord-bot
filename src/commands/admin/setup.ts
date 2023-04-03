@@ -1,6 +1,11 @@
 import { generateEmbed } from '../../utils';
-import { getServerLanguage, setContentChannelId } from '../../entities';
+import {
+  getServerLanguage,
+  setContentCategoryId,
+  setContentChannelId,
+} from '../../entities';
 import { ICommand, BotModules, MessageType } from '../../types';
+import { GuildChannel } from 'discord.js';
 
 const args = [
   {
@@ -32,6 +37,12 @@ export const command: ICommand = {
         description: { key: 'command.setup.content.success' },
         lang,
       });
+
+      const parent = (message.channel as GuildChannel).parent;
+
+      if (parent) {
+        await setContentCategoryId(message.guildId as string, parent.id);
+      }
 
       message.channel.send({ embeds: [embed] });
     }

@@ -17,4 +17,7 @@ export class ServerConfigEntity
 
   @Column({ default: null, nullable: true })
   contentChannelId: string;
+
+  @Column({ default: null, nullable: true })
+  contentCategoryId: string;
 }

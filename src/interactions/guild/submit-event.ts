@@ -2,6 +2,7 @@ import {
   EventEntity,
   finishEventCreation,
   getEventByUserIdWithStatusCreating,
+  getServerContentCategory,
   getServerContentChannel,
   getServerLanguage,
   setContentChannelAndMessageId,
@@ -67,67 +68,88 @@ const validateDateAndTime = (eventDate: string, eventTime: string) => {
 export const interaction: IInteraction = {
   name: 'submit-event',
   run: async (client, interaction) => {
-    const userId: string = interaction.user.id;
-    const eventName = interaction.fields.getTextInputValue('eventName');
-    const eventDescription =
-      interaction.fields.getTextInputValue('eventDescription');
-    const eventDate = interaction.fields.getTextInputValue('eventDate');
-    const eventTime = interaction.fields.getTextInputValue('eventTime');
+    try {
+      const userId: string = interaction.user.id;
+      const eventName = interaction.fields.getTextInputValue('eventName');
+      const eventDescription =
+        interaction.fields.getTextInputValue('eventDescription');
+      const eventDate = interaction.fields.getTextInputValue('eventDate');
+      const eventTime = interaction.fields.getTextInputValue('eventTime');
 
-    const validationResult = validateDateAndTime(eventDate, eventTime);
+      const validationResult = validateDateAndTime(eventDate, eventTime);
 
-    if (!validationResult) {
-      await sendDMMessage(
-        interaction,
-        'Nie prawidłowy format daty lub godziny',
+      if (!validationResult) {
+        await sendDMMessage(
+          interaction,
+          'Nie prawidłowy format daty lub godziny',
+        );
+
+        return;
+      }
+
+      const event = await finishEventSetup(
+        userId,
+        eventName,
+        eventDescription,
+        eventDate,
+        eventTime,
+      );
+      if (!event) {
+        interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
+        return;
+      }
+
+      const lang = await getServerLanguage(event.guildId);
+      const contentChannelId = await getServerContentChannel(event.guildId);
+
+      if (!contentChannelId) {
+        interaction.reply({
+          content:
+            'Serwer nie posiada zdefiniowanego kanału dla wydarzeń. Skontaktuj się z administracją serwera',
+        });
+        return;
+      }
+
+      const guild = await client.guilds.fetch(event.guildId);
+      const channel = (await guild.channels.fetch(
+        contentChannelId,
+      )) as TextChannel;
+      if (!channel) {
+        interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
+        return;
+      }
+
+      const embed = await contentEmbed(event, lang);
+      const messageResult = await channel.send({ embeds: [embed] });
+
+      await setContentChannelAndMessageId(
+        event,
+        contentChannelId,
+        messageResult.id,
       );
 
-      return;
-    }
+      await sendDMMessage(interaction, 'Wydarzenie zostało utworzone');
+      await generateReactions(messageResult, event);
+      await contentReactionHandler(messageResult, event.id, lang);
 
-    const event = await finishEventSetup(
-      userId,
-      eventName,
-      eventDescription,
-      eventDate,
-      eventTime,
-    );
-    if (!event) {
-      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
-      return;
-    }
-
-    const lang = await getServerLanguage(event.guildId);
-    const contentChannelId = await getServerContentChannel(event.guildId);
-
-    if (!contentChannelId) {
-      interaction.reply({
-        content:
-          'Serwer nie posiada zdefiniowanego kanału dla wydarzeń. Skontaktuj się z administracją serwera',
+      const textChannel = await guild.channels.create({
+        name: `${event.name} (${event.date} ${event.time})`,
       });
-      return;
+
+      if (!textChannel) {
+        return;
+      }
+
+      event.textChannelId = textChannel.id; // @TODO
+      await event.save();
+
+      const categoryId = await getServerContentCategory(event.guildId);
+
+      if (categoryId) {
+        await textChannel.setParent(categoryId);
+      }
+    } catch (e) {
+      console.log(e);
     }
-
-    const guild = await client.guilds.fetch(event.guildId);
-    const channel = (await guild.channels.fetch(
-      contentChannelId,
-    )) as TextChannel;
-    if (!channel) {
-      interaction.reply({ content: 'Wystąpił błąd po stronie serwera' });
-      return;
-    }
-
-    const embed = await contentEmbed(event, lang);
-    const messageResult = await channel.send({ embeds: [embed] });
-
-    await setContentChannelAndMessageId(
-      event,
-      contentChannelId,
-      messageResult.id,
-    );
-
-    await sendDMMessage(interaction, 'Wydarzenie zostało utworzone');
-    await generateReactions(messageResult, event);
-    await contentReactionHandler(messageResult, event.id, lang);
   },
 };

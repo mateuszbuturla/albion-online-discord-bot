@@ -70,3 +70,32 @@ export const setContentChannelId = async (
 
   return true;
 };
+
+export const setContentCategoryId = async (
+  guildId: string,
+  contentCategoryId: string,
+): Promise<boolean> => {
+  const findServer = await ServerConfigEntity.findOne({ where: { guildId } });
+
+  if (!findServer) {
+    return false;
+  }
+
+  findServer.contentCategoryId = contentCategoryId;
+
+  await findServer.save();
+
+  return true;
+};
+
+export const getServerContentCategory = async (
+  guildId: string,
+): Promise<string | null> => {
+  const findServer = await ServerConfigEntity.findOne({ where: { guildId } });
+
+  if (!findServer || !findServer.contentCategoryId) {
+    return null;
+  }
+
+  return findServer.contentCategoryId;
+};

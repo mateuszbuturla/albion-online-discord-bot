@@ -5,7 +5,7 @@ import {
   getAllInProgressContents,
   getAllPendingContents,
 } from '../../entities';
-import { MessageManager } from 'discord.js';
+import { MessageManager, TextChannel } from 'discord.js';
 
 const sendDMReminder = async (event: EventEntity) => {
   await event.participants.forEach(async (participant) => {
@@ -59,8 +59,6 @@ export const CRONContent = async () => {
 
   const inProgessEvents = await getAllInProgressContents();
 
-  console.log(inProgessEvents);
-
   inProgessEvents.forEach(async (event) => {
     const splitDate = event.date.split('-');
     const splitTime = event.time.split(':');
@@ -95,6 +93,14 @@ export const CRONContent = async () => {
       }
 
       await msg.delete(); // @TODO
+
+      const textCahnnel = await client.channels.fetch(event.textChannelId);
+
+      if (!textCahnnel) {
+        return;
+      }
+
+      await textCahnnel.delete();
     }
   });
 };

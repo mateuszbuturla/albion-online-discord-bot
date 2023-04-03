@@ -17,4 +17,5 @@ export interface IEventEntity {
   time: string;
   channelId: string;
   messageId: string;
+  textChannelId: string;
 }
